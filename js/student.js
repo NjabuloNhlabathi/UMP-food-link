@@ -11,7 +11,6 @@ function renderStudentFoods() {
     }
 
     container.innerHTML = available.map(food => {
-        // --- NEW: Get AI insight based on the EXACT food name ---
         const insight = getWasteInsight(food.name, food.category);
         const insightText = insight.percentage > 30 
             ? '⚠️ High historical waste. Take only what you need!' 
@@ -60,10 +59,9 @@ function logWaste(foodId) {
     
     const reason = prompt('Reason for waste? (e.g. Overproduction, Spoilage)', 'Overproduction') || 'Unknown';
     
-    // IMPORTANT: Store the food name in the waste log so future AI lookups work!
     data.wasteLogs.push({
         foodId: food.id,
-        foodName: food.name, // <-- THIS ensures the AI learns from this log
+        foodName: food.name,
         category: food.category,
         wastedQty: qty,
         reason: reason,
