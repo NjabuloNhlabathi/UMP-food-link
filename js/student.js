@@ -5,10 +5,20 @@ function renderStudentFoods() {
     const available = data.foods.filter(f => f.status === 'available');
 
     if (available.length === 0) {
-        container.innerHTML = '<div class="empty-state">🥗 No surplus food available right now. Check back later!</div>';
+        container.innerHTML = `
+            <div class="empty-state-neumorphic">
+                <span class="empty-icon">🥗</span>
+                <h3 class="headline-md">No Surplus Available</h3>
+                <p class="body-md">Check back later for available meals!</p>
+            </div>
+        `;
         updateBadge();
         return;
     }
+
+    // Update mini stats
+    document.getElementById('availCount').innerText = available.length;
+    document.getElementById('reservedCount').innerText = data.reservations.length;
 
     container.innerHTML = available.map(food => {
         const insight = getWasteInsight(food.name, food.category);
@@ -16,16 +26,21 @@ function renderStudentFoods() {
             ? '⚠️ High historical waste. Take only what you need!' 
             : '✅ Low waste footprint. Good choice!';
         
+        // Determine card accent color based on waste percentage
+        let accentColor = 'var(--tertiary-container)';
+        if (insight.percentage > 30) accentColor = 'var(--secondary-container)';
+        else if (insight.percentage < 15) accentColor = 'var(--primary-container)';
+        
         return `
-            <div class="food-card">
+            <div class="food-card-neumorphic" style="border-top-color: ${accentColor};">
                 <h4>${food.name}</h4>
                 <div class="meta">📂 ${food.category.replace('_', ' ')}</div>
                 <div class="meta">⚖️ ${food.qty} kg available</div>
                 <div class="meta">⏳ Expires: ${new Date(food.expiry).toLocaleString()}</div>
                 <div class="ai-insight">🧠 AI Insight: ~${insight.percentage}% avg waste ${insight.source}</div>
-                <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;">
-                    <button class="btn btn-primary btn-sm" onclick="reserveFood('${food.id}')">📲 Reserve</button>
-                    <button class="btn btn-warning btn-sm" onclick="logWaste('${food.id}')">🗑️ Log Waste</button>
+                <div class="food-card-actions">
+                    <button class="btn-primary-neumorphic btn-sm-neumorphic" onclick="reserveFood('${food.id}')">📲 Reserve</button>
+                    <button class="btn-warning-neumorphic btn-sm-neumorphic" onclick="logWaste('${food.id}')">🗑️ Log Waste</button>
                 </div>
             </div>
         `;

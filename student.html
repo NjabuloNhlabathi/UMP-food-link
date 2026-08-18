@@ -4,23 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FoodLink - Student Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 </head>
 <body>
+
 <div class="app-container">
-    <nav class="nav-links">
-        <a href="homepage.html">🏠 Home</a>
-        <a href="student.html" class="active">👨‍🎓 Student Dashboard <span class="badge-count" id="availBadge">0</span></a>
-        <a href="cafe.html">👨‍🍳 Staff Dashboard</a>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="nav-neumorphic">
+        <div class="nav-brand">
+            <span class="brand-icon">🍽️</span>
+            <span class="brand-text">FoodLink</span>
+        </div>
+        <div class="nav-links">
+            <a href="homepage.html">🏠 Home</a>
+            <a href="student.html" class="active">👨‍🎓 Students <span class="badge-count" id="availBadge">0</span></a>
+            <a href="cafe.html">👨‍🍳 Staff</a>
+        </div>
     </nav>
 
-    <h2>👨‍🎓 Student Dashboard <span style="font-size:16px; font-weight:normal; color:#5a7a5a;">Reserve surplus food & track waste</span></h2>
-    <div id="studentFoodList" class="card-grid">
+    <!-- ========== DASHBOARD HEADER ========== -->
+    <div class="dashboard-header">
+        <div>
+            <h1 class="display-text" style="font-size:32px;">👨‍🎓 Student Dashboard</h1>
+            <p class="body-md" style="color: var(--on-surface-variant);">Reserve surplus food & track waste</p>
+        </div>
+        <div class="dashboard-stats-mini">
+            <div class="stat-mini-neumorphic">
+                <span class="stat-mini-label">Available</span>
+                <span class="stat-mini-value" id="availCount">0</span>
+            </div>
+            <div class="stat-mini-neumorphic">
+                <span class="stat-mini-label">Reserved</span>
+                <span class="stat-mini-value" id="reservedCount">0</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== FOOD LIST ========== -->
+    <div id="studentFoodList" class="food-grid">
         <!-- Rendered by JS -->
     </div>
+
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <script src="js/ai-utils.js"></script>
 <script src="js/student.js"></script>
 </body>

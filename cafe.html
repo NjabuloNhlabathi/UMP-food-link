@@ -3,54 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UMP Foodlink - Staff</title>
+    <title>FoodLink - Staff Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 </head>
 <body>
+
 <div class="app-container">
-    <nav class="nav-links">
-        <a href="homepage.html">🏠 Home</a>
-        <a href="student.html">👨‍🎓 Student Dashboard <span class="badge-count" id="availBadge">0</span></a>
-        <a href="staff.html" class="active">👨‍🍳 Staff Dashboard</a>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="nav-neumorphic">
+        <div class="nav-brand">
+            <span class="brand-icon">🍽️</span>
+            <span class="brand-text">FoodLink</span>
+        </div>
+        <div class="nav-links">
+            <a href="homepage.html">🏠 Home</a>
+            <a href="student.html">👨‍🎓 Students <span class="badge-count" id="availBadge">0</span></a>
+            <a href="cafe.html" class="active">👨‍🍳 Staff</a>
+        </div>
     </nav>
 
+    <!-- ========== DASHBOARD HEADER ========== -->
+    <div class="dashboard-header">
+        <div>
+            <h1 class="display-text" style="font-size:32px;">👨‍🍳 Kitchen Staff Dashboard</h1>
+            <p class="body-md" style="color: var(--on-surface-variant);">Manage surplus food & get AI recommendations</p>
+        </div>
+    </div>
 
-    <h2>👨‍🍳 Kitchen Staff Dashboard</h2>
-    <div class="row">
-        <div class="col">
-            <div style="background:#f6fbf6; padding:20px; border-radius:20px;">
-                <h4 style="margin-bottom:16px;">➕ Add New Surplus</h4>
-                <div class="form-group"><label>Food Name</label><input id="foodName" placeholder="e.g. Chicken Curry" /></div>
-                <div class="form-group"><label>Category</label>
-                    <select id="foodCategory">
+    <!-- ========== TWO-COLUMN LAYOUT ========== -->
+    <div class="staff-layout">
+        
+        <!-- LEFT: Add Food & AI Analyzer -->
+        <div class="staff-left">
+            
+            <!-- Add Food Card -->
+            <div class="card-neumorphic">
+                <h3 class="headline-md" style="margin-bottom:16px;">➕ Add New Surplus</h3>
+                
+                <div class="form-group-neumorphic">
+                    <label class="label-caps">Food Name</label>
+                    <input id="foodName" class="input-neumorphic" placeholder="e.g. Nasi Lemak" />
+                </div>
+                
+                <div class="form-group-neumorphic">
+                    <label class="label-caps">Category</label>
+                    <select id="foodCategory" class="input-neumorphic">
                         <option value="cooked_meal">Cooked Meal</option>
                         <option value="raw_veg">Raw Veg/Fruit</option>
                         <option value="meat_seafood">Meat/Seafood</option>
                         <option value="dairy_bread">Dairy/Bread</option>
+                        <option value="liquid_oil">Liquid/Oil</option>
                     </select>
                 </div>
-                <div class="form-group"><label>Quantity (kg)</label><input id="foodQty" type="number" value="2.5" step="0.1" /></div>
-                <div class="form-group"><label>Expiry / Available Until</label><input id="foodExpiry" type="datetime-local" /></div>
-                <button class="btn btn-primary" onclick="addFoodItem()" style="width:100%;">➕ Add to Surplus</button>
-                <hr style="margin:20px 0; border-color:#dde8dd;" />
-                <button class="btn btn-warning" onclick="runStaffAI()" style="width:100%;">🧠 AI Surplus Analyzer</button>
-                <div id="staffAIResult" style="margin-top:16px; background:white; padding:14px; border-radius:12px; display:none; border-left:5px solid #e65100;"></div>
+                
+                <div class="form-row">
+                    <div class="form-group-neumorphic" style="flex:1;">
+                        <label class="label-caps">Quantity (kg)</label>
+                        <input id="foodQty" class="input-neumorphic" type="number" value="2.5" step="0.1" />
+                    </div>
+                    <div class="form-group-neumorphic" style="flex:2;">
+                        <label class="label-caps">Expiry / Available Until</label>
+                        <input id="foodExpiry" class="input-neumorphic" type="datetime-local" />
+                    </div>
+                </div>
+                
+                <button class="btn-primary-neumorphic" onclick="addFoodItem()" style="width:100%;">
+                    ➕ Add to Surplus
+                </button>
+            </div>
+            
+            <!-- AI Analyzer Card -->
+            <div class="card-neumorphic" style="border-top: 3px solid var(--tertiary);">
+                <h3 class="headline-md" style="margin-bottom:8px;">🧠 AI Surplus Analyzer</h3>
+                <p class="body-md" style="color: var(--on-surface-variant); margin-bottom:16px;">
+                    Scan all surplus items and get EPA-aligned recommendations.
+                </p>
+                <button class="btn-warning-neumorphic" onclick="runStaffAI()" style="width:100%;">
+                    🧠 Analyze All Surplus
+                </button>
+                <div id="staffAIResult" class="result-box-neumorphic"></div>
+            </div>
+            
+        </div>
+        
+        <!-- RIGHT: Inventory -->
+        <div class="staff-right">
+            <div class="card-neumorphic">
+                <h3 class="headline-md" style="margin-bottom:16px;">📦 Inventory</h3>
+                <div id="staffInventoryList" class="inventory-list">
+                    <!-- Rendered by JS -->
+                </div>
             </div>
         </div>
-        <div class="col">
-            <h4 style="margin-bottom:16px;">📦 Inventory</h4>
-            <div id="staffInventoryList" style="max-height:500px; overflow-y:auto;"></div>
-        </div>
+        
     </div>
 
-    <!-- HIDDEN INFO: CSV is loaded automatically from ai-utils.js -->
-    <p style="margin-top:30px; font-size:13px; color:#5a7a5a; text-align:center; border-top:1px solid #dde8dd; padding-top:20px;">
-        📊 AI is using your pre-loaded dataset from <strong>ai-utils.js</strong>.
-        To update it, paste your CSV data into the <code>RAW_CSV_DATA</code> variable in that file.
-    </p>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <script src="js/ai-utils.js"></script>
 <script src="js/staff.js"></script>
 </body>

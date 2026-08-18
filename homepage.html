@@ -1,174 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>FoodLink - UMP</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodLink - Neumorphic Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-    <style>
-        /* Additional styles to keep your original design */
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            background: #f4f9f4;
-        }
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 20px 30px;
-            background: white;
-            box-shadow: 0 20px 60px rgba(0,40,0,0.1);
-        }
-        h1 { color: navy; }
-        h2 { color: navy; }
-        h2.maroon { color: maroon; }
-        h3 { color: #1e4a1e; }
-        hr { border: 1px solid #e0e8e0; margin: 30px 0; }
-        .nav-links { 
-            display: flex; 
-            gap: 10px; 
-            padding: 15px 0; 
-            border-bottom: 2px solid #e0e8e0; 
-            margin-bottom: 25px; 
-            flex-wrap: wrap; 
-        }
-        .nav-links a { 
-            padding: 10px 24px; 
-            font-size: 15px; 
-            font-weight: 600; 
-            border-radius: 40px; 
-            text-decoration: none; 
-            color: #3a5a3a; 
-            transition: 0.3s; 
-        }
-        .nav-links a:hover { background: #e8f3e8; }
-        .nav-links a.active { background: #1e4a1e; color: white; }
-        .badge-count { 
-            background: #ff6b35; 
-            color: white; 
-            border-radius: 30px; 
-            padding: 1px 10px; 
-            font-size: 12px; 
-            margin-left: 6px; 
-        }
-        .stats-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
-            gap: 15px; 
-            margin: 20px 0 30px 0; 
-        }
-        .stat-card { 
-            background: #f0f7f0; 
-            padding: 18px; 
-            border-radius: 16px; 
-            text-align: center; 
-            border-left: 5px solid #2e7d32; 
-        }
-        .stat-card h3 { font-size: 28px; color: #1e4a1e; margin: 0; }
-        .stat-card p { margin: 5px 0 0 0; color: #3a5a3a; }
-        .ai-sorter-box { 
-            background: #e8f3e8; 
-            border-radius: 20px; 
-            padding: 25px; 
-            margin: 20px 0; 
-            border: 2px dashed #2e7d32; 
-        }
-        .row { display: flex; gap: 20px; flex-wrap: wrap; }
-        .col { flex: 1; min-width: 200px; }
-        .form-group { margin-bottom: 16px; }
-        .form-group label { display: block; font-weight: 600; color: #1e3a1e; margin-bottom: 5px; font-size: 14px; }
-        .form-group select { width: 100%; padding: 12px; border: 1px solid #cbdccb; border-radius: 12px; font-size: 15px; }
-        .btn { 
-            padding: 10px 24px; 
-            border: none; 
-            border-radius: 40px; 
-            font-weight: 600; 
-            cursor: pointer; 
-            transition: 0.3s; 
-            font-size: 15px; 
-        }
-        .btn-primary { background: #2e7d32; color: white; }
-        .btn-primary:hover { background: #1b5e20; }
-        .result-box { 
-            margin-top: 15px; 
-            padding: 15px; 
-            background: white; 
-            border-radius: 14px; 
-            border-left: 6px solid #2e7d32; 
-            display: none; 
-        }
-        .result-box strong { font-size: 18px; }
-        .foodlink-img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 12px;
-            margin: 10px 0;
-        }
-        .footer {
-            text-align: center;
-            color: #5a7a5a;
-            padding: 20px 0 10px 0;
-            font-size: 14px;
-        }
-        .participating {
-            background: #f0f7f0;
-            padding: 20px;
-            border-radius: 16px;
-            margin: 15px 0;
-        }
-        .participating ul {
-            list-style: none;
-            padding: 0;
-        }
-        .participating li {
-            padding: 6px 0;
-            font-size: 16px;
-        }
-        @media (max-width: 700px) { 
-            .container { padding: 15px; } 
-            .nav-links a { padding: 8px 16px; font-size: 13px; }
-        }
-    </style>
 </head>
 <body>
 
-<div class="container">
+<div class="app-container">
 
     <!-- ========== NAVIGATION ========== -->
-    <nav class="nav-links">
-        <a href="index.html" class="active">🏠 Home</a>
-        <a href="student.html">👨‍🎓 Student Dashboard <span class="badge-count" id="availBadge">0</span></a>
-        <a href="cafe.html">👨‍🍳 Staff Dashboard</a>
+    <nav class="nav-neumorphic">
+        <div class="nav-brand">
+            <span class="brand-icon">🍽️</span>
+            <span class="brand-text">FoodLink</span>
+        </div>
+        <div class="nav-links">
+            <a href="homepage.html" class="active">🏠 Home</a>
+            <a href="student.html">👨‍🎓 Students <span class="badge-count" id="availBadge">0</span></a>
+            <a href="cafe.html">👨‍🍳 Staff</a>
+        </div>
     </nav>
 
-    <!-- ========== YOUR ORIGINAL HOMEPAGE CONTENT ========== -->
-    <center>
-        <h1 style="color:navy;">FoodLink</h1>
-        <h2 style="color:maroon;">Linking Food. Nourishing Futures.</h2>
-        <p style="max-width:700px; line-height:1.6;">
-            Creating a smarter and more sustainable campus by turning food waste
-            into opportunity through prediction, redistribution, and analytics.
-        </p>
-        <img src="foodlink.png" alt="FoodLink Banner" class="foodlink-img" width="600">
-    </center>
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="display-text">Linking Food.<br>Nourishing Futures.</h1>
+            <p class="body-lg">Creating a smarter and more sustainable campus by turning food waste into opportunity through prediction, redistribution, and analytics.</p>
+            <div class="hero-actions">
+                <a href="student.html" class="btn-primary-neumorphic">👨‍🎓 View Surplus Food</a>
+                <a href="staff.html" class="btn-ghost-neumorphic">👨‍🍳 Staff Dashboard</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="foodlink.png" alt="FoodLink Banner" class="foodlink-img">
+        </div>
+    </section>
 
-    <hr>
+    <!-- ========== STATS SECTION ========== -->
+    <section class="stats-section">
+        <h2 class="headline-lg">📊 Live Campus Stats</h2>
+        <div class="stats-grid">
+            <div class="stat-card-neumorphic">
+                <span class="stat-icon">🍱</span>
+                <h3 id="totalItems">0</h3>
+                <p>Total Surplus</p>
+            </div>
+            <div class="stat-card-neumorphic">
+                <span class="stat-icon">📲</span>
+                <h3 id="totalReserved">0</h3>
+                <p>Reservations</p>
+            </div>
+            <div class="stat-card-neumorphic">
+                <span class="stat-icon">🗑️</span>
+                <h3 id="totalWaste">0</h3>
+                <p>Waste Logs (kg)</p>
+            </div>
+        </div>
+    </section>
 
-    <h2 style="color:navy;">📊 Live Campus Stats</h2>
-    <div class="stats-grid">
-        <div class="stat-card"><h3 id="totalItems">0</h3><p>Total Surplus</p></div>
-        <div class="stat-card"><h3 id="totalReserved">0</h3><p>Reservations</p></div>
-        <div class="stat-card"><h3 id="totalWaste">0</h3><p>Waste Logs (kg)</p></div>
-    </div>
-
-    <!-- ========== AI QUICK SORTER ========== -->
-    <div class="ai-sorter-box">
-        <h3 style="margin-top:0; color:#1e4a1e;">🤖 AI Waste Sorter</h3>
-        <p style="color:#3a5a3a;">Select a food type and condition to get the EPA-recommended action.</p>
-        <div class="row">
-            <div class="col">
-                <div class="form-group"><label>🥦 Food Type</label>
-                    <select id="aiFoodType">
+    <!-- ========== AI SORTER SECTION ========== -->
+    <section class="ai-sorter-section">
+        <div class="section-header">
+            <h2 class="headline-lg">🤖 AI Waste Sorter</h2>
+            <p class="body-md">Select a food type and condition to get the EPA-recommended action.</p>
+        </div>
+        
+        <div class="card-neumorphic ai-sorter-card">
+            <div class="sorter-grid">
+                <div class="form-group-neumorphic">
+                    <label class="label-caps">🥦 Food Type</label>
+                    <select id="aiFoodType" class="input-neumorphic">
                         <option value="cooked_meal">Cooked Meal</option>
                         <option value="raw_veg">Raw Veg/Fruit</option>
                         <option value="meat_seafood">Meat/Seafood</option>
@@ -176,145 +81,81 @@
                         <option value="liquid_oil">Liquid/Oil</option>
                     </select>
                 </div>
-            </div>
-            <div class="col">
-                <div class="form-group"><label>📋 Condition</label>
-                    <select id="aiCondition">
+                <div class="form-group-neumorphic">
+                    <label class="label-caps">📋 Condition</label>
+                    <select id="aiCondition" class="input-neumorphic">
                         <option value="fresh_edible">Fresh & Edible</option>
                         <option value="slightly_off">Slightly past prime</option>
                         <option value="spoiled_rotten">Spoiled/Rotten</option>
                         <option value="cooked_leftover">Cooked Leftover</option>
                     </select>
                 </div>
+                <div class="sorter-action">
+                    <button class="btn-primary-neumorphic" onclick="runHomeAI()" style="width:100%;">
+                        🧠 Analyze Waste
+                    </button>
+                </div>
             </div>
-            <div class="col" style="display:flex; align-items:flex-end; padding-bottom:16px;">
-                <button class="btn btn-primary" onclick="runHomeAI()" style="width:100%;">🧠 Analyze Waste</button>
+            
+            <div id="homeAIResult" class="result-box-neumorphic">
+                <div class="result-header">
+                    <span class="result-icon">✅</span>
+                    <strong>Recommended Action:</strong>
+                </div>
+                <span id="homeAction" class="result-action"></span>
+                <p id="homeReason" class="result-reason"></p>
+                <span id="homeLevel" class="chip-neumorphic"></span>
             </div>
         </div>
-        <div id="homeAIResult" class="result-box">
-            <strong>✅ Recommended Action:</strong> 
-            <span id="homeAction" style="font-size:20px; font-weight:bold; color:#1e4a1e;"></span>
-            <p id="homeReason" style="margin-top:6px; color:#3a5a3a;"></p>
-            <span id="homeLevel" style="background:#2e7d32; color:white; padding:4px 14px; border-radius:30px; display:inline-block; margin-top:6px;"></span>
+    </section>
+
+    <!-- ========== IMPACT SECTION ========== -->
+    <section class="impact-section">
+        <h2 class="headline-lg">🌍 Projected Impact</h2>
+        <div class="impact-grid">
+            <div class="impact-card-neumorphic">
+                <span class="impact-icon">📉</span>
+                <h3>30-50%</h3>
+                <p>Reduced food waste</p>
+            </div>
+            <div class="impact-card-neumorphic">
+                <span class="impact-icon">🎓</span>
+                <h3>Affordable</h3>
+                <p>Meals for students</p>
+            </div>
+            <div class="impact-card-neumorphic">
+                <span class="impact-icon">🌱</span>
+                <h3>Lower</h3>
+                <p>Carbon footprint</p>
+            </div>
+            <div class="impact-card-neumorphic">
+                <span class="impact-icon">💰</span>
+                <h3>Data-Driven</h3>
+                <p>Cost savings</p>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <hr>
+    <!-- ========== LOCATIONS ========== -->
+    <section class="locations-section">
+        <h2 class="headline-lg">📍 Participating Campus Cafeterias</h2>
+        <div class="locations-grid">
+            <div class="location-chip">🏢 Building 13 Cafeteria</div>
+            <div class="location-chip">🏢 Building 6 Cafeteria</div>
+            <div class="location-chip">🍴 Hospitality Building</div>
+            <div class="location-chip">🍽️ Dining Building</div>
+        </div>
+    </section>
 
-    <!-- ========== YOUR ORIGINAL CONTENT CONTINUES ========== -->
-    <h2 style="color:navy;">The Challenge</h2>
-
-    <h3>🍽️ Food Overproduction</h3>
-    <p>Campus cafeterias often prepare more food than students consume, resulting in unnecessary waste.</p>
-
-    <h3>📉 Lack of Waste Data</h3>
-    <p>Universities struggle to monitor food waste and identify opportunities for improvement.</p>
-
-    <h3>🎓 Student Food Insecurity</h3>
-    <p>Some students need affordable access to nutritious meals while edible food is being discarded.</p>
-
-    <hr>
-
-    <h2 style="color:navy;">Our Solution</h2>
-
-    <h3>🧠 AI Food Demand Predictor</h3>
-    <p>Predicts food demand using historical meal trends and campus activities, helping cafeterias prepare the right amount of food.</p>
-
-    <h3>🍱 Surplus Food Rescue</h3>
-    <p>Connects surplus meals with students before the food goes to waste.</p>
-
-    <h3>📊 Campus Waste Intelligence Dashboard</h3>
-    <p>Tracks food production, consumption, rescued meals, and waste reduction statistics.</p>
-
-    <hr>
-
-    <h2 style="color:navy;">How FoodLink Works</h2>
-
-    <ol>
-        <li>Students reserve meals or provide demand data.</li>
-        <li>AI predicts food demand.</li>
-        <li>Cafeterias prepare food accordingly.</li>
-        <li>Surplus food is listed on FoodLink.</li>
-        <li>Students access available meals.</li>
-        <li>Waste data is tracked and analyzed.</li>
-    </ol>
-
-    <hr>
-
-    <h2 style="color:navy;">Projected Impact</h2>
-
-    <ul>
-        <li>✅ Reduced food waste on campus</li>
-        <li>✅ Better food planning</li>
-        <li>✅ More affordable meals for students</li>
-        <li>✅ Increased sustainability awareness</li>
-        <li>✅ Lower cafeteria operating costs</li>
-    </ul>
-
-    <hr>
-
-    <h2 style="color:maroon;">Feed More. Waste Less. Grow Together.</h2>
-
-    <hr>
-
-    <h2 style="color:navy;">📍 Participating Campus Cafeterias</h2>
-
-    <p>FoodLink connects surplus food from key food service locations across the University of Mpumalanga campus.</p>
-
-    <div class="participating">
-        <ul>
-            <li>🏢 Building 13 Cafeteria</li>
-            <li>🏢 Building 6 Cafeteria</li>
-            <li>🍴 Hospitality Building</li>
-            <li>🍽️ Dining Building (next to the Great Hall)</li>
-        </ul>
-    </div>
-
-    <p style="max-width:700px; line-height:1.6;">
-        FoodLink transforms surplus food into opportunity, creating a smarter, more sustainable future for the University of Mpumalanga community.
-    </p>
-
-    <hr>
-
-    <div class="footer">
-        FoodLink © 2026 | University of Mpumalanga Hackathon Project
-    </div>
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer-neumorphic">
+        <p class="footer-tagline">Feed More. Waste Less. Grow Together.</p>
+        <p class="footer-text">FoodLink © 2026 | University of Mpumalanga Hackathon Project</p>
+    </footer>
 
 </div>
 
-<!-- ========== JAVASCRIPT ========== -->
 <script src="js/ai-utils.js"></script>
 <script src="js/home.js"></script>
-
-<script>
-    // Additional Homepage logic
-    function runHomeAI() {
-        const type = document.getElementById('aiFoodType').value;
-        const condition = document.getElementById('aiCondition').value;
-        const result = getAIRecommendation(type, condition);
-
-        const box = document.getElementById('homeAIResult');
-        box.style.display = 'block';
-        document.getElementById('homeAction').innerText = result.action;
-        document.getElementById('homeReason').innerText = result.reason;
-        document.getElementById('homeLevel').innerText = result.level;
-    }
-
-    function renderStats() {
-        const data = getData();
-        const available = data.foods.filter(f => f.status === 'available');
-        document.getElementById('totalItems').innerText = available.length;
-        document.getElementById('totalReserved').innerText = data.reservations.length;
-        const totalWasteKg = data.wasteLogs.reduce((sum, w) => sum + w.wastedQty, 0);
-        document.getElementById('totalWaste').innerText = totalWasteKg.toFixed(1);
-        updateBadge();
-    }
-
-    window.onload = function() {
-        renderStats();
-        runHomeAI();
-    };
-</script>
-
 </body>
 </html>
